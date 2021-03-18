@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Fetch Example</title>
+        <style>
+            h1{
+             border-color: rgb(250, 107, 5);
+             text-shadow: 2px 2px 5px red;
+            }
+         </style>
+        </head>
+    <body>
+        <h1>Madhubabu Konda computes</h1>
+ 
+        <input id='one' type="number">
+       
+        <button onclick="fetchResponse()"> Remote Compute </button>
+       <div id="result">
+        Your result will be displayed here.
+        </div>
+     <script>
+        function fetchResponse() {
+            let x = document.getElementById("one").value
+         
+            let response = fetch("http://127.0.0.1:3001/?x=" + x)
+                .then((response) => { return response.text() })
+                .then(
+                    (text) => {
+                       console.log(text)
+                       document.getElementById("result").innerHTML = text
+                    })
+                .catch(
+                    (text) => {
+                         console.log(text)
+                         document.getElementById("result").innerHTML = text
+                    });
+        }
+      </script>
+   </body>
+</html>
